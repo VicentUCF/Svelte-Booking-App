@@ -2,5 +2,5 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>Home</h1>
+<h1>About</h1>
 <p>Current URL: {$page.route.id}</p>
