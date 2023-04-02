@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Upload from '$lib/components/upload/upload.svelte';
 </script>
 
 <h1>Home</h1>

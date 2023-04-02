@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom'
 import { expect, test } from '@playwright/test';
 
 test('index page has expected h1', async ({ page }) => {

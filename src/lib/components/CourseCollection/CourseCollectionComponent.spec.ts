@@ -1,25 +1,31 @@
-import '@testing-library/jest-dom'
-import CourseRepository, { type Course } from "$lib/services/CourseRepository";
+vi.mock('$lib/courses/infrastructure/LocalCourseRepository');
+
+import { LocalCourseRepository } from '$lib/courses/infrastructure/LocalCourseRepository';
 import { render, screen } from "@testing-library/svelte";
-import { describe, vi, vitest } from "vitest";
+import { vi } from 'vitest';
 import CourseCollectionComponent from "./CourseCollectionComponent.svelte";
 
-vitest.mock("../../services/CourseRepository.ts");
+// describe("CourseCollectionComponent", () => {
 
-const courses: Course[] = [
-  { id: 1, name: "Course 1", description: "Course 1 description" },
-  { id: 2, name: "Course 2", description: "Course 2 description" },
-  { id: 3, name: "Course 3", description: "Course 3 description" },
-]
+//   test("Will render the course collection", async () => {
+//     render(CourseCollectionComponent, {coursesRepo: LocalCourseRepository()});
+//     await screen.findByText("Course 1");
+//     await screen.findByText("Course 2");
+//   })
+// });
 
-describe("CourseCollectionComponent", () => {
-  it("should list courses", async () => {
-    const coursesRepo = new CourseRepository();
-    // vi.spyOn(courses, coursesRepo.searchAll)
-    coursesRepo.searchAll = vitest.fn().mockResolvedValue(courses);
-    render(CourseCollectionComponent, { coursesRepo })
-    //mirar si aparece el texto de los cursos
-    const card = await screen.findByText(/Course/);
-    expect(card).toBeInTheDocument();
-  });
-});
+describe("CourseCollection Mocked", () => {
+  
+    test("Will render the course collection", async () => {
+      const localRep = LocalCourseRepository();
+      vi.fn(localRep.searchAll).mockResolvedValue([
+        {
+          id: 24,
+          name: "Course 24",
+          description: "Course 24 description",
+        }
+      ]);
+      render(CourseCollectionComponent, { coursesRepo: localRep });
+      await screen.findByText("Course 24");
+    })
+})

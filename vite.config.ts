@@ -10,6 +10,7 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text', 'json', 'html'],
     },
-    environment: 'jsdom'
+    setupFiles: ['./testGlobalSetup.ts'],
+    environment: 'jsdom',    
 	}
 });

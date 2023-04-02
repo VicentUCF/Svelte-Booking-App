@@ -1,12 +1,5 @@
 <script lang="ts">
 	export let links: Array<{ href: string; text: string; active: boolean }>;
-	import { page } from '$app/stores';
-	$: links = links.map((link) => {
-		return {
-			...link,
-			active: link.href === $page.route.id
-		};
-	});
 </script>
 
 <header>
