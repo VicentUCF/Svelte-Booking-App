@@ -4,7 +4,7 @@
 
 	let links = [
 		{ href: '/', text: 'Home', active: false },
-		{ href: '/about', text: 'About', active: false }
+    { href: '/courts', text: 'Courts', active: false },
 	];
 
   $: links = links.map((link) => {

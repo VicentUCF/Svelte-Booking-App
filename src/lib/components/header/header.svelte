@@ -1,5 +1,22 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+	import { login } from "../../../store";
+
 	export let links: Array<{ href: string; text: string; active: boolean }>;
+  let userIsLogged$: boolean = false;
+
+  onMount(async () => {
+    console.log(userIsLogged$)
+    login.subscribe((value) => {
+      userIsLogged$ = value;
+    });
+  });
+
+  const logout = () => {
+    login.set(false);
+    window.localStorage.removeItem('login');
+  };
+
 </script>
 
 <header>
@@ -11,6 +28,13 @@
 				</li>
 			{/each}
 		</ul>
+    <div class="login">
+      {#if userIsLogged$}
+        <button on:click={logout}>Logout</button>
+      {:else}
+        <a href="/login">Login</a>
+      {/if}
+    </div>
 	</nav>
 </header>
 
