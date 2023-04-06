@@ -1,8 +1,7 @@
-export function isCourtIdValid(id: string): boolean {
-  const regexExp =
-    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+import { isUuidValid } from "$lib/modules/shared/domain/Uuid";
 
-  return regexExp.test(id);
+export function isCourtIdValid(id: string): boolean {
+  return isUuidValid(id);
 }
 
 export function CourtIdNotValidError(id: string): Error {

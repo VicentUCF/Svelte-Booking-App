@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { Court } from "$lib/modules/Courts/domain/Court";
 	import type { CourtRepository } from "$lib/modules/Courts/domain/CourtRepository";
+	import { SvelteStorageCourtRepository } from "$lib/modules/Courts/infrastructure/SvelteStorageCourtRepository";
+	import { Uuid } from "$lib/modules/shared/domain/Uuid";
 
   export let courtRepository: CourtRepository;
   
   let court: Court = {
-    id: "",
+    id: Uuid(),
     name: "",
     schedule: "",
   };

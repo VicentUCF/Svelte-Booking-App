@@ -1,10 +1,9 @@
 <script lang="ts">
+	import { Uuid } from '$lib/modules/shared/domain/Uuid';
 	import type { User } from '@prisma/client';
-	import { onMount } from 'svelte';
-	import { v4 as uuidv4 } from 'uuid';
 
 	let user: User = {
-		id: uuidv4(),
+		id: Uuid(),
 		email: '',
 		name: '',
 		password: ''

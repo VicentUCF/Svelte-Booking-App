@@ -1,4 +1,5 @@
 import { db } from "$lib/db/db";
+import type { User } from "@prisma/client";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async () => {
@@ -9,24 +10,41 @@ export const GET: RequestHandler = async () => {
   return json(courts);
 }
 
-export const POST: RequestHandler = async (request) => {
+export const POST: RequestHandler = async ({ params }) => {
   await db.$connect();
-  const court = await db.user.upsert({
-    where: {
-      id: '1'
-    },
-    update: {
-      name: 'paco'
-    },
+  const { id, email, password, authToken, name } = params as User;
+
+  if (!name || !email || !password || !id || !authToken) return json({ error: "Missing required fields" }, { status: 400 });
+
+  await db.user.upsert({
+    where: { id: id },
+    update: params,
     create: {
-      id: '',
-      name: 'paco',
-      email: '',
-      password: '',
+      id: id,
+      name: name,
+      email: email,
+      password: password,
+      authToken: authToken
+
     }
+  });
+
+  await db.$disconnect();
+
+  return json({}, { status: 201 });
+};
+
+export const DELETE: RequestHandler = async ({ params }) => {
+  await db.$connect();
+  const { id } = params;
+
+  if (!id) return json({ error: "Missing required fields" }, { status: 400 });
+
+  await db.user.delete({
+    where: { id: id }
   });
   await db.$disconnect();
 
-  return json(court);
-
+  return json({}, { status: 204 });
 };
+
