@@ -1,0 +1,47 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  password     String
+  authToken    String?       @unique
+  name         String?
+  Reservations Reservation[]
+  Matches      Match[]
+}
+
+model Court {
+  id           String        @id @default(uuid())
+  name         String
+  schedule     Json
+  Reservations Reservation[]
+  Match        Match[]
+}
+
+model Reservation {
+  id      String   @id @default(uuid())
+  courtId String
+  userId  String
+  startAt DateTime
+  endAt   DateTime
+  Court   Court    @relation(fields: [courtId], references: [id])
+  User    User     @relation(fields: [userId], references: [id])
+}
+
+model Match {
+  id      String   @id @default(uuid())
+  courtId String
+  userId  String
+  startAt DateTime
+  endAt   DateTime
+  players Json
+  Court   Court    @relation(fields: [courtId], references: [id])
+  User    User     @relation(fields: [userId], references: [id])
+}

@@ -14,3 +14,4 @@ test('changes button text on click', async () => {
   await fireEvent.click(button)
   expect(button).toHaveTextContent('Button Clicked')
 })
+admin

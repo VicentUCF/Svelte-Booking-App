@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: padel_user
+      POSTGRES_PASSWORD: padel_password
+      POSTGRES_DB: padel_app
+    ports:
+      - "5432:5432"
+    volumes:
+      - padel-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: vicentciscar17@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: toor
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  padel-data:

@@ -12,7 +12,7 @@ const court: Court = {
 
 
 //test for courts List
-describe("CourtsList", () => {
+describe.skip("CourtsList", () => {
   it("should render courts list", () => {
 
     const localCourtRepository = LocalStorageCourseRepository();

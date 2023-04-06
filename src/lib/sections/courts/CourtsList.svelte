@@ -6,12 +6,6 @@
 	import CourtAdd from './CourtAdd.svelte';
   import { courtsStorage } from '../../../store';
 
-	const c: Court = {
-		id: '1',
-		name: 'Court 1',
-		schedule: 'afternoon'
-	};
-
 	export let courtRepository: CourtRepository;
 	let courts: Court[] = [];
   
