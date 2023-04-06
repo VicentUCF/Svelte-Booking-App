@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-	import Header from '$lib/components/header/header.svelte';
+	import Header from '$lib/shared/components/header/header.svelte';
 
 	let links = [
 		{ href: '/', text: 'Home', active: false },

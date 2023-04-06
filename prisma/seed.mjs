@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
-console.log(process.env.DATABASE_URL);
 
 
 async function main() {

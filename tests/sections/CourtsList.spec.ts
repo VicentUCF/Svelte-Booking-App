@@ -1,4 +1,4 @@
-import type { Court } from "$lib/modules/Courts/domain/Court";
+import type { Court } from "$lib/features/court/domain/entities/Court";
 import { LocalStorageCourseRepository } from "$lib/modules/Courts/infrastructure/LocalStorageCourtRepository";
 import CourtsList from "$lib/sections/courts/CourtsList.svelte";
 import { render, screen } from "@testing-library/svelte";

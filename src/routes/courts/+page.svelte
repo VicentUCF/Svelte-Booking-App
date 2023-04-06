@@ -1,20 +1,9 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import CourtsList from '$lib/sections/courts/CourtsList.svelte';
-	import { onMount } from 'svelte';
-	import { login } from '../../store';
-	import { SvelteStorageCourtRepository } from '$lib/modules/Courts/infrastructure/SvelteStorageCourtRepository';
-	import { ApiCourtRepository } from '$lib/modules/Courts/infrastructure/ApiCourtRepository';
-	const courtRepository = ApiCourtRepository();
-
-  onMount(async () => {
-    login.subscribe((value) => {
-      if (!value) {
-        goto('/login');
-      }
-    });
-  });
-
+	import { CourtService } from '$lib/features/court/application/services/CourtService';
+	import { PostgreSQLCourtRepository } from '$lib/features/court/infrastructure/repositories/PostgreSQLCourtRepository';
+	import CourtsList from '$lib/features/court/ui/components/CourtsList.svelte';
+	const repository = new PostgreSQLCourtRepository();
+	const courtService = new CourtService(repository);
 </script>
 
-<CourtsList {courtRepository} />
+<CourtsList {courtService} />
