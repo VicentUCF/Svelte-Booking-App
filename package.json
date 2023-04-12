@@ -48,7 +48,7 @@
 		"faker": "^6.6.6",
 		"uuid": "^9.0.0"
 	},
-  "prisma": {
-    "seed": "node prisma/seed.mjs"
-  }
+	"prisma": {
+		"seed": "node prisma/seed.mjs"
+	}
 }

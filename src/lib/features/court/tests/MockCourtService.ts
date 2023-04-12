@@ -9,13 +9,10 @@ export class MockCourtService extends CourtService {
   }
 
   async getAllCourts(): Promise<Court[]> {
-    return new Promise((resolve) => {
-      console.log('MockCourtService: getAllCourts');
-      resolve([
-        { id: '1', name: new CourtName('Court 1'), schedule: new CourtsSchedule('afternoon') },
-        { id: '2', name: new CourtName('Court 2'), schedule: new CourtsSchedule('morning') },
-      ]);
-    });
+    return [
+      { id: '1', name: new CourtName('Court 1'), schedule: new CourtsSchedule('afternoon') },
+      { id: '2', name: new CourtName('Court 2'), schedule: new CourtsSchedule('morning') },
+    ];
   }
 
   // Sobrescribe los otros métodos según sea necesario

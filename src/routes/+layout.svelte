@@ -16,6 +16,16 @@
 
 </script>
 
-<Header bind:links />
+<div class="app">
+  <Header bind:links />
+  <slot />
+</div>
 
-<slot />
+
+<style lang="scss">
+  @import '../styles/index.scss';
+</style>
+
+
+
+
